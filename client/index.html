@@ -8,6 +8,7 @@
   <link rel="icon" href="../../favicon.ico">
   <title>Yeoman UI</title>
   <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
   <style>
     .command-line {
       color: black;
@@ -40,14 +41,15 @@
 
     body, html {
       min-height: 100%;
-      height: 100%;
+      height: 100%;/*
+      font-family: 'Open Sans', sans-serif;*/
     }
 
     .generator-question-prompts {
       overflow: auto;
-      background-color: white;
       padding: 0px;
-      /*height: 100%;*/
+      background-color: #4CAF50;
+      color: white;
     }
 
     .command-line pre::-webkit-scrollbar {
@@ -67,21 +69,21 @@
     }
 
     .generator-question-prompt {
-      border-left: 4px solid #4CAF50;
-      background-color: rgba(76, 175, 80, 0.05);
+      /*border-left: 4px solid #4CAF50;
+      background-color: rgba(76, 175, 80, 0.05);*/
       padding-bottom: 5px;
       padding-top: 5px;
+    }
+
+    .generator-question-prompt-disabled {
+      /*border-left: 4px solid #e1e1e1;
+      background-color: rgba(238, 238, 238, 0.31);
+      padding-bottom: 5px;
+      padding-top: 5px;*/
     }
 
     .generator-question-prompt label {
       font-size: 12px;
-    }
-
-    .generator-question-prompt-disabled {
-      border-left: 4px solid #e1e1e1;
-      background-color: rgba(238, 238, 238, 0.31);
-      padding-bottom: 5px;
-      padding-top: 5px;
     }
 
     .prompt-actions-bar {
@@ -91,11 +93,11 @@
     }
 
     .generator-question-prompts-header {
-      background-color: rgba(245, 245, 245, 0.24);
+      background-color: rgba(0, 0, 0, 0.11);
       box-shadow: 0px 1px 1px 1px rgba(158, 158, 158, 0.12);
       padding: 10px;
       font-size: 20px;
-      color: #8BC34A;
+      color: white;
     }
 
     @media (min-width: 768px) {
@@ -147,7 +149,8 @@
 
     <form class="col-lg-12 col-md-12 col-sm-12 col-xs-12 generator-selection" name="yoForm" ng-submit="yoCtrl.generator && yoCtrl.subgenerator && yoCtrl.submit()">
 
-      <div ng-if="!yoCtrl.generator || !yoCtrl.subgenerator" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 generator-question-prompt form-group"
+      <div ng-if="!yoCtrl.generator || !yoCtrl.subgenerator"
+           class="col-lg-12 col-md-12 col-sm-12 col-xs-12 generator-question-prompt form-group form-group-sm"
            ng-class="{'has-error': prompt.error, 'generator-question-prompt-disabled': yoCtrl.generator}">
         <select
           ng-model="yoCtrl.generator"
@@ -158,7 +161,8 @@
           <option value="">Please choose a generator</option>
         </select>
       </div>
-      <div ng-if="!yoCtrl.generator || !yoCtrl.subgenerator" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 generator-question-prompt form-group"
+      <div ng-if="!yoCtrl.generator || !yoCtrl.subgenerator"
+           class="col-lg-12 col-md-12 col-sm-12 col-xs-12 generator-question-prompt form-group form-group-sm"
            ng-if="yoCtrl.generator.subgenerators.length > 1"
            ng-class="{'has-error': prompt.error, 'generator-question-prompt-disabled': yoCtrl.subgenerator}">
         <select
@@ -244,7 +248,7 @@
       <div ng-if="yoCtrl.generator && yoCtrl.subgenerator && yoCtrl.isWaiting()"><span ng-if="yoCtrl.isWaiting()" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Processing ...............</div>
 
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 prompt-actions-bar">
-        <button type="submit" class="btn btn-xs btn-primary pull-right" ng-if="!yoCtrl.isWaiting()" ng-disabled="yoCtrl.isWaiting()">next</button>
+        <button type="submit" class="btn btn-sm btn-primary pull-right" ng-if="!yoCtrl.isWaiting()" ng-disabled="yoCtrl.isWaiting()">next</button>
       </div>
 
     </form>
