@@ -109,6 +109,7 @@
       self.prompts.push(yoNormalizePrompt(prompt));
 
       self.scopeApply();
+      appendLog("\n<span style='color: #5bc0de'>?</span> " + prompt.message);
     });
 
     socket.on('yo:diff', function(diffs) {
@@ -116,14 +117,15 @@
       self.scopeApply();
     });
 
-    socket.on('yo:log', function(logs) {
+    socket.on('yo:log', appendLog);
+    function appendLog(logs) {
       var element = document.getElementById("logs");
       var oldLog = element.innerHTML;
-      element.innerHTML = (oldLog ? oldLog : "") + "\n\n" + logs;
+      element.innerHTML = (oldLog ? oldLog : "") + "\n" + logs;
       element.scrollTop = element.scrollHeight;
       self.logs = $sce.trustAsHtml(logs);
-      self.scopeApply();
-    });
+      self.scopeApply("\n> " + prompt.message);
+    }
 
     socket.on('yo:prompt:error', function(msg) {
       alert(msg);
@@ -171,6 +173,8 @@
         question: self.prompts[self.activePromptIndex],
         answer: yoNormalizeAnswer(self.prompts[self.activePromptIndex])
       });
+
+      appendLog("    <span style='color: #00b3ee'>" + yoNormalizeAnswer(self.prompts[self.activePromptIndex]) + "</span> ");
     }
 
     function _reset() {
