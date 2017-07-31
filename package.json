@@ -1,13 +1,13 @@
 {
-  "name": "yeoman-ui",
+  "name": "yeoman-server",
   "version": "1.0.0",
   "description": "Yeoman UI made with Express, Socket.io, Angular & Bootstrap",
   "main": "lib/yeoman-ui.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Julien Cabanès <julien.c@icloud.com>",
-  "license": "BSD-2-Clause",
+  "author": "Dinuka De Silva <l.dinukadesilva@gmail.com>",
+  "license": "MIT",
   "dependencies": {
     "ansi-to-html": "^0.3.0",
     "archiver": "^0.15.1",
