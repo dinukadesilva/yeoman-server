@@ -35,14 +35,19 @@
     .generator-questions {
       padding: 0px;
       height: 100%;
-      position: absolute;
+      min-height: 100%
+    }
+
+    body, html {
+      min-height: 100%;
+      height: 100%;
     }
 
     .generator-question-prompts {
       overflow: auto;
       background-color: white;
       padding: 0px;
-      height: 100%;
+      /*height: 100%;*/
     }
 
     .command-line pre::-webkit-scrollbar {
@@ -93,6 +98,15 @@
       color: #8BC34A;
     }
 
+    @media (min-width: 768px) {
+      .generator-question-prompts {
+        height: 100%;
+      }
+      .command-line {
+        height: 100%;
+      }
+    }
+
 
     /**
     #########################################################
@@ -127,11 +141,13 @@
 
 
 
-<div class="col-lg-12 generator-questions">
-  <div class="col-lg-6 generator-question-prompts">
-    <div class="col-lg-12 generator-question-prompts-header">Yeoman Server</div>
-    <div class="col-lg-12 generator-selection" ng-if="!yoCtrl.generator || !yoCtrl.subgenerator">
-      <div class="col-lg-12 generator-question-prompt form-group"
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 generator-questions">
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 generator-question-prompts">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 generator-question-prompts-header">Yeoman Server</div>
+
+    <form class="col-lg-12 col-md-12 col-sm-12 col-xs-12 generator-selection" name="yoForm" ng-submit="yoCtrl.generator && yoCtrl.subgenerator && yoCtrl.submit()">
+
+      <div ng-if="!yoCtrl.generator || !yoCtrl.subgenerator" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 generator-question-prompt form-group"
            ng-class="{'has-error': prompt.error, 'generator-question-prompt-disabled': yoCtrl.generator}">
         <select
           ng-model="yoCtrl.generator"
@@ -142,7 +158,7 @@
           <option value="">Please choose a generator</option>
         </select>
       </div>
-      <div class="col-lg-12 generator-question-prompt form-group"
+      <div ng-if="!yoCtrl.generator || !yoCtrl.subgenerator" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 generator-question-prompt form-group"
            ng-if="yoCtrl.generator.subgenerators.length > 1"
            ng-class="{'has-error': prompt.error, 'generator-question-prompt-disabled': yoCtrl.subgenerator}">
         <select
@@ -154,14 +170,10 @@
           <option value="">Please choose a sub-generator</option>
         </select>
       </div>
-    </div>
-
-
-    <form class="col-lg-12 generator-selection" name="yoForm" ng-submit="yoCtrl.submit()" ng-if="yoCtrl.generator && yoCtrl.subgenerator">
 
       <div
-        class="col-lg-12 generator-question-prompt form-group form-group-sm"
-        ng-if="!prompt.isDisabled"
+        ng-if="yoCtrl.generator && yoCtrl.subgenerator && !prompt.isDisabled"
+        class="col-lg-12 col-md-12 col-sm-12 col-xs-12 generator-question-prompt form-group form-group-sm"
         ng-class="{'has-error': prompt.error, 'generator-question-prompt-disabled': prompt.isDisabled}"
         ng-repeat="prompt in yoCtrl.prompts">
         <label
@@ -229,16 +241,16 @@
         <!-- <pre>{{ prompt | json }}</pre> -->
       </div>
 
-      <div ng-if="yoCtrl.isWaiting()"><span ng-if="yoCtrl.isWaiting()" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Processing ...............</div>
+      <div ng-if="yoCtrl.generator && yoCtrl.subgenerator && yoCtrl.isWaiting()"><span ng-if="yoCtrl.isWaiting()" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Processing ...............</div>
 
-      <div class="col-lg-12 prompt-actions-bar" ng-if="!yoCtrl.isWaiting()">
-        <button type="submit" class="btn btn-xs btn-primary pull-right" ng-disabled="yoCtrl.isWaiting()">next</button>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 prompt-actions-bar">
+        <button type="submit" class="btn btn-xs btn-primary pull-right" ng-if="!yoCtrl.isWaiting()" ng-disabled="yoCtrl.isWaiting()">next</button>
       </div>
 
     </form>
   </div>
-  <div class="col-lg-6 command-line">
-    <pre id="logs" class="col-lg-12"></pre>
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 command-line">
+    <pre id="logs" class="col-lg-12 col-md-12 col-sm-12 col-xs-12"></pre>
   </div>
 </div>
 
