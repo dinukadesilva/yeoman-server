@@ -6,31 +6,27 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <link rel="icon" href="../../favicon.ico">
-  <title>Yeoman UI</title>
-  <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css"/>
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <title>Yeoman Server</title>
   <style>
 
   </style>
 </head>
-
-
 <body ng-app="app" ng-controller="YoController as yoCtrl" data-gr-c-s-loaded="true">
-
-
-
 
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 generator-questions">
   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 generator-question-prompts">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 generator-question-prompts-header">Yeoman Server</div>
-
     <form class="col-lg-12 col-md-12 col-sm-12 col-xs-12 generator-selection" name="yoForm" ng-submit="yoCtrl.generator && yoCtrl.subgenerator && yoCtrl.submit()">
-
       <div ng-if="!yoCtrl.generator || !yoCtrl.subgenerator"
            class="col-lg-12 col-md-12 col-sm-12 col-xs-12 generator-question-prompt form-group form-group-sm"
            ng-class="{'has-error': prompt.error, 'generator-question-prompt-disabled': yoCtrl.generator}">
+        <label
+          for="generator-prompt">
+          Generator
+        </label>
         <select
           ng-model="yoCtrl.generator"
+          id="generator-prompt"
           ng-options="gen as gen.name for gen in yoCtrl.generators | orderBy:'name'"
           ng-change="yoCtrl.updateGenerator()"
           class="form-control form-control-lg"
@@ -38,12 +34,18 @@
           <option value="">Please choose a generator</option>
         </select>
       </div>
+
       <div ng-if="!yoCtrl.generator || !yoCtrl.subgenerator"
            class="col-lg-12 col-md-12 col-sm-12 col-xs-12 generator-question-prompt form-group form-group-sm"
            ng-if="yoCtrl.generator.subgenerators.length > 1"
            ng-class="{'has-error': prompt.error, 'generator-question-prompt-disabled': yoCtrl.subgenerator}">
+        <label
+          for="sub-generator-prompt">
+          Sub Generator
+        </label>
         <select
           ng-model="yoCtrl.subgenerator"
+          id="sub-generator-prompt"
           ng-options="subgen as subgen.name for subgen in yoCtrl.generator.subgenerators | orderBy:'name'"
           ng-change="yoCtrl.updateGenerator()"
           class="form-control form-control-lg"
@@ -62,7 +64,6 @@
           for="prompt"
           ng-bind-html="prompt.message">
         </label>
-
         <div ng-if="prompt.type === 'list' || prompt.type === 'rawlist' || prompt.type === 'expand'">
           <select
             id="prompt"
@@ -73,7 +74,6 @@
             yo-autofocus>
           </select>
         </div>
-
         <div ng-if="prompt.type === 'checkbox'">
           <div
             ng-repeat="choice in prompt.choices"
@@ -84,7 +84,6 @@
             </label>
           </div>
         </div>
-
         <div ng-if="prompt.type === 'confirm'">
           <div class="checkbox">
             <label>
@@ -93,7 +92,6 @@
             </label>
           </div>
         </div>
-
         <div ng-if="prompt.type === 'input'">
           <input
             ng-disabled="prompt.isDisabled"
@@ -102,7 +100,6 @@
             class="form-control form-control-lg"
             yo-autofocus>
         </div>
-
         <div ng-if="prompt.type === 'password'">
           <input
             ng-disabled="prompt.isDisabled"
@@ -111,15 +108,12 @@
             type="password"
             yo-autofocus>
         </div>
-
         <div
           ng-if="prompt.error"
           class="text-muted"
           ng-class="{'text-danger': prompt.error}">
           {{ prompt.error }}
         </div>
-
-        <!-- <pre>{{ prompt | json }}</pre> -->
       </div>
 
       <div ng-if="yoCtrl.generator && yoCtrl.subgenerator && yoCtrl.isWaiting()"><span ng-if="yoCtrl.isWaiting()" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Processing ...............</div>
@@ -136,12 +130,6 @@
 </div>
 
 </body>
-<script src="./bower_components/jquery/dist/jquery.min.js"></script>
-<script src="./bower_components/tether/dist/js/tether.min.js"></script>
-<script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="/socket.io/socket.io.js"></script>
-<script src="/bower_components/angular/angular.min.js"></script>
-<script src="/bower_components/angular-sanitize/angular-sanitize.min.js"></script>
-<script src="/yeoman-ui.js"></script>
-<script src="/app.js"></script>
+<script src="./dist/yeoman-ui.js"></script>
 </html>
