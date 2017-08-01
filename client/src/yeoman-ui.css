@@ -24,7 +24,7 @@
 .generator-questions {
   padding: 0px;
   height: 100%;
-  min-height: 100%
+  min-height: 100%;
 }
 
 body, html {
@@ -96,6 +96,16 @@ body, html {
 
   .command-line {
     height: 100%;
+  }
+}
+
+@media (min-width: 1000px) {
+  .generator-question-prompts {
+    width: 500px;
+  }
+
+  .command-line {
+    width: calc(100% - 500px);
   }
 }
 
