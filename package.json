@@ -1,6 +1,6 @@
 {
   "name": "yeoman-server",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Yeoman UI made with Express, Socket.io, Angular & Bootstrap",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
