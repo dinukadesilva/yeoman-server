@@ -2,7 +2,7 @@
 
 var angular = require("angular");
 var angularSanitize = require("angular-sanitize");
-var jQuery = require("jQuery");
+var jQuery = require("jquery");
 window.$ = window.jQuery = jQuery;
 require("bootstrap/dist/js/bootstrap.js");
 require("bootstrap/dist/css/bootstrap.css");
