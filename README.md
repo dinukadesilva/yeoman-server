@@ -1,4 +1,9 @@
-# What is yeoman-server?
+# yeoman-server
+
+![image](https://user-images.githubusercontent.com/10680296/28823666-63027cdc-76dc-11e7-9896-84d66bdb35d0.png)
+
+
+## What is yeoman-server?
 
 This is a fork of https://github.com/JulienCabanes/Yeoman-UI
 
