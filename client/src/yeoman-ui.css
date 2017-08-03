@@ -7,6 +7,10 @@
   border: none;
 }
 
+.no-padding {
+  padding: 0px;
+}
+
 .command-line pre {
   border-radius: 0px;
   color: white;
@@ -30,7 +34,7 @@
 body, html {
   min-height: 100%;
   height: 100%;
-        font-family: 'Open Sans', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .generator-question-prompts {
@@ -42,27 +46,34 @@ body, html {
   z-index: 1000;
 }
 
-.command-line pre::-webkit-scrollbar {
+.scroll-bar {
+  overflow: auto;
+  height: 100%;
+}
+
+.scroll-bar::-webkit-scrollbar {
   width: 9px;
   height: 9px;
   background-color: #000000;
 }
 
-.command-line pre::-webkit-scrollbar-thumb {
+.scroll-bar::-webkit-scrollbar-thumb {
   border-radius: 0px;
   background-color: rgba(255, 255, 255, 0.16);
 }
 
-.command-line pre::-webkit-scrollbar-track {
+.scroll-bar::-webkit-scrollbar-track {
   border-radius: 0px;
   background-color: #000000;
 }
 
 .generator-question-prompt {
-  /*border-left: 4px solid #4CAF50;
-  background-color: rgba(76, 175, 80, 0.05);*/
   padding-bottom: 5px;
   padding-top: 5px;
+}
+
+.generator-question-prompt .scroll-bar {
+  max-height: 200px;
 }
 
 .generator-answer-selected {
@@ -70,10 +81,6 @@ body, html {
 }
 
 .generator-question-prompt-disabled {
-  /*border-left: 4px solid #e1e1e1;
-  background-color: rgba(238, 238, 238, 0.31);
-  padding-bottom: 5px;
-  padding-top: 5px;*/
 }
 
 .generator-question-prompt label {
@@ -115,11 +122,11 @@ body, html {
 }
 
 /**
-#########################################################
-Extracted from https://www.bootply.com/128062
+ #########################################################
+ Extracted from https://www.bootply.com/128062
 
-TODO remove and add font awesome
-#########################################################
+ TODO remove and add font awesome
+ #########################################################
  */
 .glyphicon-refresh-animate {
   -animation: spin .7s infinite linear;
@@ -145,5 +152,5 @@ TODO remove and add font awesome
 }
 
 /**
-#########################################################
+ #########################################################
  */
