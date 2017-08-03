@@ -65,15 +65,6 @@
           ng-bind-html="prompt.message">
         </label>
         <div ng-if="prompt.type === 'list' || prompt.type === 'rawlist' || prompt.type === 'expand'">
-          <!-- <select
-             id="prompt"
-             ng-disabled="prompt.isDisabled"
-             ng-model="prompt.value"
-             ng-options="choice.value as choice.name for choice in prompt.choices"
-             class="form-control form-control-lg"
-             yo-autofocus>
-           </select>-->
-
           <div
             ng-repeat="choice in prompt.choices"
             class="radio">
@@ -140,7 +131,7 @@
       </div>
 
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 prompt-actions-bar">
-        <button type="submit" class="btn btn-sm btn-primary pull-right" ng-if="!yoCtrl.isWaiting()"
+        <button type="submit" class="btn btn-sm btn-default pull-right" ng-if="!yoCtrl.isWaiting()"
                 ng-disabled="yoCtrl.isWaiting()">next
         </button>
       </div>
