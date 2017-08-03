@@ -65,6 +65,10 @@ body, html {
   padding-top: 5px;
 }
 
+.generator-answer-selected {
+  background-color: rgba(0, 188, 212, 0.44);
+}
+
 .generator-question-prompt-disabled {
   /*border-left: 4px solid #e1e1e1;
   background-color: rgba(238, 238, 238, 0.31);

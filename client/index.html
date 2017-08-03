@@ -27,7 +27,8 @@
 
         <div
           ng-repeat="gen in yoCtrl.generators | orderBy:'name'"
-          class="radio">
+          ng-class="{'generator-answer-selected': yoCtrl.generator == gen}"
+          class="col-lg-12 col-md-12 col-sm-12 col-xs-12 radio">
           <label>
             <input ng-model="yoCtrl.generator" ng-value="gen" type="radio" name="generator"
                    ng-change="yoCtrl.updateGenerator()">
@@ -47,7 +48,8 @@
 
         <div
           ng-repeat="subgen in yoCtrl.generator.subgenerators | orderBy:'name'"
-          class="radio">
+          ng-class="{'generator-answer-selected': yoCtrl.subgenerator == subgen}"
+          class="col-lg-12 col-md-12 col-sm-12 col-xs-12 radio">
           <label>
             <input id="sub-generator-prompt" ng-model="yoCtrl.subgenerator" ng-value="subgen" type="radio" name="generator"
                    ng-change="yoCtrl.updateGenerator()">
@@ -69,7 +71,8 @@
         <div ng-if="prompt.type === 'list' || prompt.type === 'rawlist' || prompt.type === 'expand'">
           <div
             ng-repeat="choice in prompt.choices"
-            class="radio">
+            ng-class="{'generator-answer-selected': prompt.value == choice.value}"
+            class="col-lg-12 col-md-12 col-sm-12 col-xs-12 radio">
             <label>
               <input
                 id="prompt"
@@ -86,7 +89,8 @@
         <div ng-if="prompt.type === 'checkbox'">
           <div
             ng-repeat="choice in prompt.choices"
-            class="checkbox">
+            ng-class="{'generator-answer-selected': choice.checked}"
+            class="col-lg-12 col-md-12 col-sm-12 col-xs-12 checkbox">
             <label>
               <input type="checkbox" ng-model="choice.checked" ng-disabled="prompt.isDisabled"/>
               {{ choice.name }}
@@ -94,7 +98,7 @@
           </div>
         </div>
         <div ng-if="prompt.type === 'confirm'">
-          <div class="checkbox">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 checkbox">
             <label>
               <input type="checkbox" ng-model="prompt.value" ng-disabled="prompt.isDisabled"/>
               <span ng-bind-html="prompt.message"></span>
@@ -106,6 +110,7 @@
             ng-disabled="prompt.isDisabled"
             id="prompt"
             ng-model="prompt.value"
+            type="text"
             class="form-control form-control-lg"
             yo-autofocus>
         </div>
