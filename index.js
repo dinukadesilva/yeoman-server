@@ -22,5 +22,5 @@ app.get('/dist/:distId/:distName', function(req, res) {
   return res.download(path.join(__dirname, 'dist/', req.params.distId, req.params.distName + '.zip'));
 });
 
-http.listen(3000);
-console.log('Application Started on http://localhost:3000/');
+http.listen(8080);
+console.log('Application Started on http://localhost:8080/');
