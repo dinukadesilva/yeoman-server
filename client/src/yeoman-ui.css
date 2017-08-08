@@ -43,7 +43,6 @@ body, html {
   color: white;
   background-color: #1f1e1e;
   color: rgba(255, 255, 255, 0.51);
-  z-index: 1000;
 }
 
 .scroll-bar {
@@ -54,17 +53,18 @@ body, html {
 .scroll-bar::-webkit-scrollbar {
   width: 9px;
   height: 9px;
-  background-color: #000000;
+  background-color: rgba(0, 0, 0, 0);
 }
 
 .scroll-bar::-webkit-scrollbar-thumb {
   border-radius: 0px;
-  background-color: rgba(255, 255, 255, 0.16);
+  background-color: rgba(255, 255, 255, 0.12);
+  border-radius: 5px;
 }
 
 .scroll-bar::-webkit-scrollbar-track {
   border-radius: 0px;
-  background-color: #000000;
+  background-color: rgba(255, 255, 255, 0.13);
 }
 
 .generator-question-prompt {
