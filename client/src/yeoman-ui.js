@@ -18,19 +18,18 @@ angular
 
 angular
   .module('yoUI', ['ngSanitize'])
-  .factory('socket', function() {
+  .factory('socket', function () {
     return io();
   })
   .directive('yoAutofocus', yoAutofocus)
   .controller('YoController', YoController);
 
 
-
 function yoAutofocus() {
   return {
     restrict: 'A',
-    link: function($scope, $element) {
-      setTimeout(function() {
+    link: function ($scope, $element) {
+      setTimeout(function () {
         $element[0].focus();
       }, 0);
     }
@@ -39,12 +38,12 @@ function yoAutofocus() {
 
 function yoNormalizePrompt(prompt) {
   // Default type is input
-  if(!prompt.type) {
+  if (!prompt.type) {
     prompt.type = 'input';
   }
 
   // Confirm prompt could be dropdown ?
-  if(prompt.type === 'confirm') {
+  if (prompt.type === 'confirm') {
     prompt.choices = [{
       value: true,
       name: 'Yes'
@@ -55,9 +54,9 @@ function yoNormalizePrompt(prompt) {
   }
 
   // Index is useful
-  if(prompt.choices && prompt.choices.length) {
-    if(typeof prompt.choices[0] === 'string') {
-      prompt.choices = prompt.choices.map(function(choice, index) {
+  if (prompt.choices && prompt.choices.length) {
+    if (typeof prompt.choices[0] === 'string') {
+      prompt.choices = prompt.choices.map(function (choice, index) {
         return {
           key: choice.substr(0, 1),
           value: prompt.type === 'list' ? choice : index,
@@ -66,12 +65,12 @@ function yoNormalizePrompt(prompt) {
       });
     }
 
-    prompt.choices.forEach(function(choice, index) {
+    prompt.choices.forEach(function (choice, index) {
       choice.index = index;
     });
   }
 
-  if(!prompt.default && prompt.type === 'expand') {
+  if (!prompt.default && prompt.type === 'expand') {
     prompt.default = 0;
   }
 
@@ -81,10 +80,10 @@ function yoNormalizePrompt(prompt) {
 }
 
 function yoNormalizeAnswer(prompt) {
-  if(prompt.type === 'checkbox') {
+  if (prompt.type === 'checkbox') {
     prompt.value = [];
-    prompt.choices.forEach(function(choice) {
-      if(choice.checked) {
+    prompt.choices.forEach(function (choice) {
+      if (choice.checked) {
         prompt.value.push(choice.value);
       }
     });
@@ -109,14 +108,14 @@ function YoController($scope, $sce, socket) {
 
   self.reset();
 
-  socket.on('yo:list', function(generators) {
+  socket.on('yo:list', function (generators) {
     self.generators = generators;
     self.scopeApply();
   });
 
   socket.emit('yo:list');
 
-  socket.on('yo:prompt', function(prompt) {
+  socket.on('yo:prompt', function (prompt) {
     self.prompts.filter(function (prompt) {
       prompt.isDisabled = true;
     });
@@ -128,7 +127,7 @@ function YoController($scope, $sce, socket) {
     appendLog("\n<span style='color: #5bc0de'>?</span> " + prompt.message);
   });
 
-  socket.on('yo:diff', function(diffs) {
+  socket.on('yo:diff', function (diffs) {
     self.diffs = diffs;
     self.scopeApply();
   });
@@ -143,13 +142,13 @@ function YoController($scope, $sce, socket) {
     self.scopeApply("\n> " + prompt.message);
   }
 
-  socket.on('yo:prompt:error', function(msg) {
+  socket.on('yo:prompt:error', function (msg) {
     alert(msg);
     self.scopeApply();
   });
 
-  socket.on('yo:end', function(data) {
-    if(data.distId && data.distName) {
+  socket.on('yo:end', function (data) {
+    if (data.distId && data.distName) {
       window.location.href = '/dist/' + data.distId + '/' + data.distName;
     } else {
       alert('Sorry, an error has occured :(');
@@ -164,15 +163,15 @@ function YoController($scope, $sce, socket) {
   function _updateGenerator() {
     self.reset();
 
-    if(self.subgenerator && self.generator.subgenerators.indexOf(self.subgenerator) < 0) {
+    if (self.subgenerator && self.generator.subgenerators.indexOf(self.subgenerator) < 0) {
       self.subgenerator = null;
     }
 
-    if(self.subgenerator) {
+    if (self.subgenerator) {
       return self.run(self.subgenerator.namespace);
     }
 
-    if(self.generator && self.generator.subgenerators.length <= 1) {
+    if (self.generator && self.generator.subgenerators.length <= 1) {
       return self.run(self.generator.namespace);
     }
   }
@@ -207,6 +206,8 @@ function YoController($scope, $sce, socket) {
   }
 
   function _isWaiting() {
-    return self.prompts.filter(function (p1) { return !p1.isDisabled; }).length <= 0;
+    return self.prompts.filter(function (p1) {
+        return !p1.isDisabled;
+      }).length <= 0;
   }
 }
