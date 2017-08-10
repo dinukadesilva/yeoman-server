@@ -190,12 +190,19 @@ function YoController($scope, $sce, socket) {
 
   function _submit() {
     self.prompts[self.activePromptIndex].isDisabled = true;
+    var answer = yoNormalizeAnswer(self.prompts[self.activePromptIndex]);
     socket.emit('yo:prompt', {
       question: self.prompts[self.activePromptIndex],
-      answer: yoNormalizeAnswer(self.prompts[self.activePromptIndex])
+      answer: answer
     });
 
-    appendLog("    <span style='color: #00b3ee'>" + yoNormalizeAnswer(self.prompts[self.activePromptIndex]) + "</span> ");
+    if (answer && typeof answer === "object" && answer.length) {
+      for (var i = 0; i < answer.length; i++) {
+        appendLog("    <span style='color: #00b3ee'>" + answer[i] + "</span>");
+      }
+    } else {
+      appendLog("    <span style='color: #00b3ee'>" + answer + "</span>");
+    }
   }
 
   function _reset() {
