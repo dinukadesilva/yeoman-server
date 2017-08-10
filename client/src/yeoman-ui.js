@@ -87,6 +87,12 @@ function yoNormalizeAnswer(prompt) {
         prompt.value.push(choice.value);
       }
     });
+  } else if (prompt.type === 'password') {
+    var encodedPassword = "";
+    for (var i = 0; i < prompt.value.length; i++) {
+      encodedPassword += "*";
+    }
+    return encodedPassword;
   }
 
   // console.log('prompt.value: ', prompt.value);
