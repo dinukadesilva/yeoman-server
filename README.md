@@ -1,6 +1,6 @@
 # yeoman-server
 
-![image](https://user-images.githubusercontent.com/10680296/28823666-63027cdc-76dc-11e7-9896-84d66bdb35d0.png)
+![image](https://user-images.githubusercontent.com/10680296/29199441-ad1e59ae-7e6a-11e7-8561-a6999525c7fc.png)
 
 
 ## What is yeoman-server?
